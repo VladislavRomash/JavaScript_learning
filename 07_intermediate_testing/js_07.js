@@ -110,16 +110,39 @@ console.log(setUpperCase("всем стУдентам инкуБатора Же�
 
 // 6. Реализуйте функцию, котрая принимает параметрами строку и подстроку. Если все
 // символы подстроки содержаться в стороке - возвращает true, если нет -
-// возвращает false. Проверка проводится без учёта регистра и без учётом
+// возвращает false. Проверка проводится без учёта регистра и без учёта
 // повторяющихся символов.
 //* попробовать учитывать повтор символов в подстроке
 
 const isIncludes = (string, substring) => {
-    // I am thinking ...
+    return string.toLowerCase().trim().split('')
+        .map(m => substring.toLowerCase().trim().split('').map(e => e === m).filter(f => f))
+        .flat().length === substring.trim().length
 }
 
-console.log(isIncludes("Incubator", "Cut")) // true
-console.log(isIncludes("Incubator", "table")) // false
-console.log(isIncludes("Incubator", "inbba")) // true
+console.log(isIncludes("Incubator", "Cut ")) // true
 console.log(isIncludes("Incubator", "inba")) // true
+
+console.log(isIncludes("Incubator", "inbba")) // true
 console.log(isIncludes("Incubator", "Incubatorrr")) // true
+
+console.log(isIncludes("Incubator", "table")) // false
+console.log(isIncludes("hello", "hey")) // false
+
+const isIncludesWithStar = (string, substring) => {
+    return string.toLowerCase().trim().split('')
+        .map(m => [...new Set(substring.toLowerCase().trim().split(''))].map(e => e === m).filter(f => f))
+        .flat().length === substring.trim().length
+}
+
+console.log(isIncludesWithStar("Incubator", "Cut ")) // true
+console.log(isIncludesWithStar("Incubator", "inba")) // true
+
+console.log(isIncludesWithStar("IncubatorB", "inbba")) // true
+console.log(isIncludesWithStar("RIncubator", "Incubatorr")) // true
+
+console.log(isIncludesWithStar("Incubator", "inbba")) // false
+console.log(isIncludesWithStar("Incubator", "Incubatorrr")) // false
+
+console.log(isIncludesWithStar("Incubator", "table")) // false
+console.log(isIncludesWithStar("hello", "hey")) // false
