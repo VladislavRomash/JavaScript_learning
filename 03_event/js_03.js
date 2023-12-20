@@ -1,7 +1,7 @@
 // обработчик, слушатель, подписчик / handler, listener, subscriber => function
-// function (вызывает брпузер) => callback
-// {...} => объект в котором содержаться сведенья о событии => Event => event => ev => e
-// new Array(), new Object(), new Event() => построен на базе страндартного шаблоного объекта Event
+// function (вызывает браузер) => callback
+// {...} => объект в котором содержатся сведения о событии => Event => event => ev => e
+// new Array(), new Object(), new Event() => построен на базе стандартного шаблонного объекта Event
 // function (Event)
 
 
@@ -11,7 +11,7 @@ const big = document.getElementById('big')
 
 // __________bubbling phase = фаза всплытия__________
 // const handler = (e) => {
-//     console.log(e.target, ':', e.currentTarget)
+//     console.log('target', e.target, ' / ', 'currentTarget', e.currentTarget)
 // }
 //
 // sm.addEventListener('click', handler)
