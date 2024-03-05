@@ -39,7 +39,7 @@
 //     .catch(error => console.log(error))
 
 
-// function newPromise(callabck) {
+// function newPromise(callback) {
 //     const resolve = (result) => {
 //         return {
 //             state: 'fulfilled',
@@ -52,7 +52,7 @@
 //             result: error
 //         }
 //     }
-//     callabck(resolve, reject)
+//     callback(resolve, reject)
 // }
 
 // const server = {
@@ -114,3 +114,31 @@
 //     .catch(error => console.log(error)) // some error
 //     .then(data => console.log('below catch', data)) // below catch, undefined
 //     .finally(() => console.log('End')) // End
+
+// __________ Practice __________
+
+// Напишите функцию delay(ms), которая возвращает промис,
+// переходящий в состояние "resolved" через ms (миллисекунд).
+
+// Пример использования:
+// delay (1000).then (() => alert("Hello!"))
+
+// const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms))
+// delay(1000).then(() => alert("Hello!"))
+
+const server = {
+    getData() {
+        return new Promise((resolve, reject) => {
+            reject('reject')
+        }, 1500)
+    }
+}
+
+// Что будет выведено в консоль
+server.getData()
+    .then(data => data + 'then1') // no
+    .catch(data => data + 'catch1') // yes
+    .catch(data => data + 'catch2') // no
+    .then(data => data + 'then2') // yes
+    .finally(data => data + 'finally') // no
+    .then(data => console.log(data)) // rejectcatch1then2
